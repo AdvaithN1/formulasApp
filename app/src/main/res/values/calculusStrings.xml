@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="calculus_limits_1_1">Constant Law For Limits</string>
+    <string name="calculus_limits_2_1"><![CDATA[Sum & Difference Law for Limits]]></string>
+    <string name="calculus_limits_3_1">Product Law for Limits</string>
+    <string name="calculus_limits_4_1">Quotient Rule for Limits</string>
+    <string name="calculus_limits_5_1">Power Law for Limits</string>
+    <string name="calculus_limits_6_1">L\'Hôpital\'s rule</string>
+    <string name="calculus_limits_6_2">L\'Hôpital\'s rule is to be used if the original limit results in an indeterminate form.</string>
+    <string name="calculus_limits_7_1">Squeeze Theorem</string>
+    <string name="calculus_limits_7_2">and</string>
+    <string name="calculus_limits_7_3">then</string>
+    <string name="calculus_derivs_1_1">Definition of a Derivative</string>
+    <string name="calculus_derivs_2_1">Power Rule</string>
+    <string name="calculus_derivs_3_1">Constant Multiple Rule</string>
+    <string name="calculus_derivs_4_1"><![CDATA[Sum & Difference Rules]]></string>
+    <string name="calculus_derivs_5_1">Product Rule</string>
+    <string name="calculus_derivs_6_1">Quotient Rule</string>
+    <string name="calculus_derivs_8_1">Derivative of Inverse</string>
+    <string name="calculus_ints_1_1">Definition of Integral</string>
+    <string name="calculus_ints_1_2">(Area under the graph f(x))</string>
+    <string name="calculus_ints_2_1">Reverse Power Rule</string>
+    <string name="calculus_ints_3_1">Reverse Bounds Integral</string>
+    <string name="calculus_ints_4_1">Constant Multiple Rule (Integral)</string>
+    <string name="calculus_ints_5_1"><![CDATA[Sum & Difference Rule (Integral)]]></string>
+    <string name="calculus_ints_6_1">Integration by Parts\n(Reverse Power Rule)</string>
+    <string name="calculus_ints_6_1land">Integration by Parts (Reverse Power Rule)</string>
+    <string name="calculus_ints_7_1">Fundamental Theorem of Calculus (1)</string>
+</resources>

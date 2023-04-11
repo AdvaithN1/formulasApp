@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="kinematics_1">
+                v - Final Velocity (m/s)\n
+                v₀ - Initial Velocity (m/s)\n
+                a - Acceleration (Assumed Constant) (m/s^2)\n
+                t - Time (s)\n</string>
+    <string name="kinematics_2">Δx - Change in Displacement (m)\n
+                v₀ - Initial Velocity (m/s)\n
+                t - Time (s)\n
+                a - Acceleration (Assumed Constant) (m/s^2)\n</string>
+    <string name="kinematics_3">
+                Δx - Change in Displacement (m)\n
+                t - Time (s)\n
+                v - Final Velocity (m/s)\n
+                v₀ - Initial Velocity (m/s)\n
+                (v+v₀)/2 - Average velocity\n
+                Acceleration assumed to be constant.</string>
+    <string name="kinematics_4">v - Final Velocity (m/s)\n
+                v₀ - Initial Velocity\n
+                a - Acceleration (Assumed Constant) (m/s^2)\n
+                Δx - Change in Displacement (m)</string>
+
+
+    <string name="dynamics_1">
+        Fnet - Net Force (Vector) (N)\n
+        m - Mass (kg)\n
+        a - Acceleration (Vector) (m/s^2)</string>
+    <string name="dynamics_2">
+        W - Weight (N)\n
+        m - Mass (kg)\n
+        g - Gravitational acceleration (On Earth ≈9.8 m/s^2)</string>
+    <string name="dynamics_3">
+        Fғ - Force of static/kinetic Friction (N) (Vector)\n
+        µ - \"mu\" - Coefficient of Static/Kinetic Friction\n
+        N - Normal Force (N, Perpendicular to Surface)\n
+        Friction is a Non-Conservative Force
+    </string>
+    <string name="dynamics_4">
+        P - Momentum (kg*m/s) (Vector)\n
+        m - Mass (kg)\n
+        v - Velocity (m/s)\n
+        When no external force acts on a system, momentum is conserved.
+    </string>
+    <string name="dynamics_5">
+        F - Spring Force (N) (Vector)\n
+        k - Spring Constant (N/m)\n
+        x - Displacement of the Spring (Compressed or Stretched)\n
+        Spring Force is a Conservative Force
+    </string>
+    
+    
+    <string name="circular_1">
+        F꜀ - Centripetal Force (Points Towards Center) (N)\n
+        m - Mass (kg)\n
+        v - Tangential Velocity (m/s)\n
+        r - Radius (Distance from Object to Center) (m)\n
+        Centripetal Force Keeps the Object moving in a Circular Motion
+    </string>
+    <string name="circular_2">
+        ω - \"Omega\" - Final Angular Velocity (rad/s)\n
+        ω₀ - Initial Angular Velocity (rad/s)\n
+        \uD835\uDEC2 - \"Alpha\" - Angular Acceleration (rad/s^2)\n
+        t - Time (s)\n
+        Assumes Angular Acceleration is Constant
+    </string>
+    <string name="circular_3">
+        Δθ - Angular Displacement (rad)\n
+        ω₀ - Initial Angular Velocity\n
+        t - Time (s)\n
+        \uD835\uDEC2 - Angular Acceleration (rad/s^2)\n
+        Assumes Angular Acceleration is Constant
+    </string>
+    <string name="circular_4">
+        ω - Angular Velocity (rad/s)\n
+        ω₀ - Initial Angular Velocity (rad/s)\n
+        \uD835\uDEC2 - Angular Acceleration\n
+        Δθ - Angular Displacement\n
+        Assumes Angular Acceleration is Constant
+    </string>
+    <string name="circular_5">
+        v - Tangential Velocity At Tip (m/s)\n
+        ω - Angular Velocity (rad/sec)\n
+        r - Radius (Distance from center to tip) (m)
+    </string>
+    <string name="circular_6">
+        a - Tangential Acceleration (m/s^2)\n
+        \uD835\uDEC2 - Angular Acceleration (rad/s^2)\n
+        r - Radius (Distance from center to tip) (m)
+    </string>
+
+    <string name="gravity_1">
+        Fg - Force of Gravity (Attractive Force) (N)
+        G - Gravitational Constant (6.67E-11 m^2/kg^2)\n
+        m\uD835\uDEC2 - Mass of first object/planet (kg)\n
+        m₂ - Mass of second object/planet (kg)\n
+        r - Distance between objects/planets (m)
+    </string>
+    <string name="gravity_2">
+        g - Gravitational Acceleration at Surface of Planet (Earth - 9.8 m/s^2)\n
+        G - Gravitational Constant (6.67E-11 m^2/kg^2)\n
+        M - Mass of Object\n
+        r - Radius of Planet
+    </string>
+
+
+    <string name="energy_1">
+        W - Work Done (Scalar) (Units: Nm or J)\n
+        ΔE - Change in Energy\n
+        F - Constant Force (Parallel to Surface) (N)\n
+        x - The Distance the Force has acted (m)
+    </string>
+    <string name="energy_2">
+        W - Work Done (Units: J [Joules]) (For Rotational Motion)\n
+        \uD835\uDF0F - Torque (Tangential Force * radius)\n
+        Δθ - Change in Angle/Change in Angular Displacement
+    </string>
+    <string name="energy_3">
+        P - Power (Linear Motion) (Watts)\n
+        W/t - Rate of Work Done\n
+        F - Force (N)\n
+        v - Velocity (m/s)
+    </string>
+    <string name="energy_4">
+        P - Power (Rotational Motion) (Watts)\n
+        \uD835\uDF0F - Torque\n
+        ω - Angular Velocity (rad/s)
+    </string>
+    <string name="energy_5">
+        KE - Kinetic Energy\n
+        m - Mass of Object Moving (kg)\n
+        v - Velocity of Object (m/s)
+    </string>
+    <string name="energy_6">
+        E - Rotational Energy\n
+        I - Moment of Inertia (kg*m^2)\n
+        ω - Angular Velocity (rad/s)
+    </string>
+    <string name="energy_7">
+        GPE - Gravitational Potential Energy (Gravitational Acceleration Constant)\n
+        m - Mass of Object (kg)\n
+        g - Gravitational Acceleration (Earth - 9.8 m/s^2)\n
+        h - Height of Object (m)
+    </string>
+    <string name="energy_8">
+        GPE - Gravitational Potential Energy (Gravitational Acceleration Not Constant)\n
+        G - Gravitational Constant (6.67E-11 m^2/kg^2)\n
+        m₁ - Mass of First Object\n
+        m₂ - Mass of Second Object/Planet\n
+        r - Distance between the center of masses of the 2 objects.\n
+        When r is Infinity, GPE is 0.
+    </string>
+
+
+    <string name="momentum_1">
+        P - Momentum (kg*m/s) (Vector)\n
+        m - Mass (kg)\n
+        v - Velocity (m/s)\n
+        When no external force acts on a system, Momentum is conserved.
+    </string>
+    <string name="momentum_2">
+        L - Angular Momentum (kg m^2/s)\n
+        I - Moment of Inertia (kg m^2)\n
+        ω - Angular Velocity (rad/s)\n
+        When no external force acts on a system, Angular Momentum is conserved.
+    </string>
+    <string name="momentum_3">
+        J - Impulse (N*s)\n
+        F - Force (N)\n
+        t - Time (s)\n
+        Area under the Force-Time graph is Impulse. This Formula assumes Force is constant.
+    </string>
+    <string name="momentum_4">
+        J - Angular Impulse (kg m^2/s)\n
+        \uD835\uDF0F - Torque (N*m)\n
+        t - Time (s)
+    </string>
+
+
+    <string name="shm_1">
+        T - Time Period of a Spring\n
+        m - Mass attached to Spring (kg)\n
+        k - Spring Constant (N/m)
+    </string>
+    <string name="shm_2">
+        T - Time period of a Simple Pendulum\n
+        l - Length of Pendulum (m)\n
+        g - Gravitational Acceleration (Earth: 9.8 m/s^2)\n
+        The mass of the object attached to the end of the pendulum does not affect the Time Period.
+    </string>
+    <string name="shm_3">
+        T - Time Period\n
+        f - Frequency (Cycles per second)\n
+        F = 1/T holds true too.
+    </string>
+    <string name="shm_4">
+        ω - Angular Frequency (rad/s)\n
+        f - Frequency (Cycles per second)
+    </string>
+    <string name="shm_5">
+        x - Displacement of Mass attached to Spring as a function of time(m)\n
+        A - Amplitude (m)\n
+        ω - Angular Frequency (rad/s)\n
+        t - Time (s)\n
+        ϕ - Phaser Angle (Initial Angle)
+    </string>
+    <string name="shm_6">
+        v - Velocity of Mass Attached to Spring (m/s)\n
+        ω - Angular Frequency (rad/s)\n
+        A - Amplitude (m)\n
+        t - Time (s)\n
+        ϕ - Phaser Angle (Initial Angle)\n
+        Derived by taking the derivative of the formula x(t) (Previous Formula).
+    </string>
+
+
+    <string name="rot_1">
+        \uD835\uDF0F - Torque (N*m)\n
+        I - Moment of Inertia (kg*m^2)\n
+        \uD835\uDEC2 - Angular Acceleration (rad/s^2)\n
+        F - Tangential Force
+        r - Radius/Distance Force is acting from center
+    </string>
+    <string name="rot_2">
+        I - Moment of Inertia For a Point Mass(kg*m^2)\n
+        m - Mass of the Point mass(kg)\n
+        r - Distance the Point mass is from center
+    </string>
+    <string name="rot_3">
+        I - Moment of Inertia Generally (kg*m^2)\n
+        c - Coefficient of the Moment of Inertia\n
+        m - Mass of the Point mass(kg)\n
+        r - Distance the Point mass is from center\n
+        \"c\" varies for different objects such as a solid disk, rod, rectangle, and for different axes through the same object
+    </string>
+    <string name="rot_4">
+        I - Moment of Inertia (kg*m^2)\n
+        I꜀ₘ - Moment of Inertia through the center of mass\n
+        m - Mass of the entire Object\n
+        d - Distance between axes\n
+        This formula is called the \"Parallel Axis Theorem\" and only works when both axes are parallel.
+    </string>
+
+    
+    
+    
+</resources>

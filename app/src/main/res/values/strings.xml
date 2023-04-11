@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Calculus and Physics Formulas</string>
+    <string name="title_text">- - -</string>
+    <string name="detail">Details</string>
+    <string name="Kinematics">Kinematics</string>
+    <string name="placeholder">- - -</string>
+    <string name="subjects">Category</string>
+    <string name="topics">Topics</string>
+    <string name="x">x</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="formulas">Formulas</string>
+    <string name="inertias_quiz">Inertias Quiz</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="link_to_privacy_policy">Link to Privacy Policy</string>
+    <string name="version_1">Version: 1.2</string>
+    <string name="moment_of_inertias">Moment of Inertias</string>
+    <string name="moment_of_inertia">Moment of Inertia</string>
+    <string name="placeholder1">placeholder</string>
+    <string name="limits">Common\nLimits</string>
+    <string name="derivatives">Common\nDerivatives</string>
+    <string name="integrals">Common\nIntegrals</string>
+    <string name="commonLim">Common Limits</string>
+    <string name="commonDer">Common Derivatives</string>
+    <string name="commonInts">Common Integrals</string>
+
+</resources>
