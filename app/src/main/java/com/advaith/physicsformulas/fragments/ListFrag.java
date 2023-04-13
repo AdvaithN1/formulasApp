@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -100,10 +101,10 @@ public class ListFrag extends Fragment {
 
     public void setColor(int index){
         if(index!=-1 && recyclerView.getChildAt(index-layoutManager.findFirstVisibleItemPosition())!=null) {
+            resetColorAll();
             recyclerView.getChildAt(index-layoutManager.findFirstVisibleItemPosition()).setBackgroundColor(Color.parseColor("#FF018786"));
         }
     }
-
 
     public void resetColorAll(){
         for(int i = 0; i<recyclerView.getChildCount(); i++){

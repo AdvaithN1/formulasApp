@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="list_back">#A8A8A6</color>
     <color name="blacky">#352E2E</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00AE03</color>
 </resources>

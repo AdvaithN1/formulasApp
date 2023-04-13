@@ -4,6 +4,7 @@
     package="com.advaith.physicsformulas"
     android:versionCode="8"
     android:versionName="1.2 (Public)">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".ApplicationClass"
@@ -16,9 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PhysicsFormulas"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".activities.CalculusActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".activities.QuizActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.MoiActivity"
             android:exported="false" />

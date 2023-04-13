@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements SubjectAdapter.It
     int subjectColorIndex; //Subject index that should be colored in
     int formulaIndex = ApplicationClass.getFormulaIndex();
 
-
     //Guideline variables
     ImageView ivDivider;
 
@@ -84,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements SubjectAdapter.It
                 fragmentManager.beginTransaction().replace(R.id.fragmentGuidelined, new CalcCommonFragment()).commit();
                 break;
         }
-
         upperBound = (float) 0.15;
         lowerBound = (float) 0.85;
 
@@ -137,22 +135,17 @@ public class MainActivity extends AppCompatActivity implements SubjectAdapter.It
                 return true;
             }
         });
-
         onCloseDivFrag();
-
-
     }
 
     public boolean isPortrait(){
         return findViewById(R.id.layout_port) != null;
     }
 
-    @Override
     public void onItemClicked(int index) {
 
         titleFrag.updateText(subjects.get(index).getSubject());
         System.out.println("sub: " + subjectIndex + "form: " + formulaIndex);
-
 
         formulaFrag.setList(subjects.get(index));
 
@@ -303,6 +296,20 @@ public class MainActivity extends AppCompatActivity implements SubjectAdapter.It
         listFrag.resetColorAll();
     }
 
+    public void onQuizClickedTopic(int index) {
+        String prompt = "";
+        for(int i = 0; i<ApplicationClass.courses.get(getIntent().getExtras().getInt("Course")).getArray().get(index).getArray().size(); i++){
+            prompt = prompt + ApplicationClass.courses.get(getIntent().getExtras().getInt("Course")).getArray().get(index).getArray().get(i).getFormTextNormal() + ", ";
+        }
+        Log.println(Log.ASSERT, "", ("QUIZ CLICKED : " + prompt));
+        Intent intent = new Intent(this, QuizActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("prompt", prompt);
+        intent.putExtra("name", ApplicationClass.courses.get(getIntent().getExtras().getInt("Course")).getArray().get(index).getSubject());
+        startActivity(intent);
+        this.finish();
+    }
+
     @Override
     public void onBackPressed() {
         if(!isPortrait()) { //landscape mode
@@ -332,7 +339,6 @@ public class MainActivity extends AppCompatActivity implements SubjectAdapter.It
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 //ApplicationClass.setSubjectIndex(-1);
                 setApplicationIndex();
-                System.out.println("OUtta here¡¡¡¡¡¡!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 startActivity(intent);
                 this.finish();
             }
@@ -431,4 +437,6 @@ public class MainActivity extends AppCompatActivity implements SubjectAdapter.It
         }
         Log.println(Log.ASSERT, "Done Setting", Integer.toString(ApplicationClass.calculusSubjectIndex));
     }
+
+
 }

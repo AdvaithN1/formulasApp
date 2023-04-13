@@ -22,5 +22,6 @@
     <string name="commonLim">Common Limits</string>
     <string name="commonDer">Common Derivatives</string>
     <string name="commonInts">Common Integrals</string>
+    <string name="back_button">Back Button</string>
 
 </resources>

@@ -118,147 +118,145 @@ public class ApplicationClass extends Application {
     final int moi6 = R.drawable.moi_6;
     final int moi7 = R.drawable.moi_7;
 
-
-
     @Override
     public void onCreate() {
         super.onCreate();
 
         //BEGIN PHYSICS COURSE
         ArrayList<Formula> kinematics = new ArrayList<>();
-        kinematics.add(new Formula(
+        kinematics.add(new Formula("v=v0+at",
                 "$$v=v_0+at$$"
         , 110, kinematics_img1layout));//v=v0+at
-        kinematics.add(new Formula(
+        kinematics.add(new Formula("Δx=v0t+1/2at^2",
                 "$$Δx=v_0t+1/2at^2$$"
         , 110, kinematics_img2layout));//Δx = vt+1/2at^2
-        kinematics.add(new Formula(
+        kinematics.add(new Formula("Δx=t*(v+v0)/2",
                 "$$Δx=t{v+v_0}/2$$"
         , 110, kinematics_img3layout));//deltax = t((v+v₀)/2)
-        kinematics.add(new Formula(
+        kinematics.add(new Formula("v^2=v0^2+2aΔx",
                 "$$v^2=v_0^2+2aΔx$$"
         , 110, kinematics_img4layout));//v^2=v₀^2+2aΔx
 
         ArrayList<Formula> dynamics = new ArrayList<>();
-        dynamics.add(new Formula(
+        dynamics.add(new Formula("F=ma",
                 "$$F_{net}=ma$$"
         , 110, dynamics_img1layout));//f=ma
-        dynamics.add(new Formula(
+        dynamics.add(new Formula("W=mg",
                 "$$W=mg$$"
         , 110, dynamics_img2layout));//W=mg
-        dynamics.add(new Formula(
+        dynamics.add(new Formula("Ff=μk",
                 "$$F_f=μk$$"
         , 110, dynamics_img3layout));//Ff=mu*k
-        dynamics.add(new Formula(
+        dynamics.add(new Formula("P=mv",
                 "$$P=mv$$"
         , 110, dynamics_img4layout));//P=mv
-        dynamics.add(new Formula(
+        dynamics.add(new Formula("F=-kx",
                 "$$F=-kx$$"
         , 110, dynamics_img5layout));//F=-kx
 
 
 
         ArrayList<Formula> circular = new ArrayList<>();
-        circular.add(new Formula(
+        circular.add(new Formula("Fc=m*(v^2)/r=mω^2r",
                 "$$F_c=m{v^2}/r=mω^2r$$"
         , 110, centri_img1layout));//mv^2/r
-        circular.add(new Formula(
-                "$$ω=ω_0+\uD835\uDEC2t$$"//Symbols: 𝛂, θ, ₀, ω, Δ
+        circular.add(new Formula("ω=ω0+αt",
+                "$$ω=ω_0+αt$$"//Symbols: 𝛂, θ, ₀, ω, Δ
         , 110, centri_img2layout));//Omega - omeganot+at
-        circular.add(new Formula(
-                "$$Δθ=ω_0t+1/2\uD835\uDEC2t^2$$"
+        circular.add(new Formula("Δθ=ω0t+1/2αt^2",
+                "$$Δθ=ω_0t+1/2αt^2$$"
         , 110, centri_img3layout));//θ = ω₀t + 1/2𝛂t^2
-        circular.add(new Formula(
-                "$$ω^2=ω_0^2+2\uD835\uDEC2Δθ$$"
+        circular.add(new Formula("ω^2=ω0^2+2αΔθ",
+                "$$ω^2=ω_0^2+2αΔθ$$"
         , 110, centri_img4layout));//w^2=w0^2+2atheta
-        circular.add(new Formula(
+        circular.add(new Formula("v=ωr",
                 "$$v=ωr$$"
         , 110, centri_img5layout));//v=wr
-        circular.add(new Formula(
-                "$$a=\uD835\uDEC2r$$"
+        circular.add(new Formula("a=αr",
+                "$$a=αr$$"
         , 110, centri_img6layout));//a=ar
 
 
 
         ArrayList<Formula> gravitation = new ArrayList<>();
-        gravitation.add(new Formula(
+        gravitation.add(new Formula("FG=(Gm1m2)/r^2",
                 "$$F_G={Gm_1m_2}/r^2$$"
         , 100, grav_img1layout));//gm1m2/r^2
-        gravitation.add(new Formula(
+        gravitation.add(new Formula("g=(GM)/r^2",
                 "$$g={GM}/r^2$$"
         , 110, grav_img2layout));//Gm/r^2
 
         ArrayList<Formula> energy = new ArrayList<>();
-        energy.add(new Formula(
+        energy.add(new Formula("W=ΔE=FΔx",
                 "$$W=ΔE=FΔx$$"
         , 110, energy_img1layout));//W=Fx
-        energy.add(new Formula(
-                "$$W_{rot}=ΔE_{rot}=\uD835\uDF0FΔθ$$"
+        energy.add(new Formula("W=ΔE=τΔθ",
+                "$$W_{rot}=ΔE_{rot}=τΔθ$$"
         , 110, energy_img2layout));//W=𝜏*theta
-        energy.add(new Formula(
+        energy.add(new Formula("P=W/t=Fv",
                 "$$P=W/t=Fv$$"
         , 110, energy_img3layout));//P=Fv
-        energy.add(new Formula(
-                "$$P=\uD835\uDF0Fω$$"
+        energy.add(new Formula("P=τω",
+                "$$P=τω$$"
         , 110, energy_img4layout));//P=tw
-        energy.add(new Formula(
+        energy.add(new Formula("KE=1/2mv^2",
                 "$$KE={1/2}mv^2$$"
         , 110, energy_img5layout));//KE
-        energy.add(new Formula(
+        energy.add(new Formula("E=1/2Iω^2",
                 "$$E_{rot}={1/2}Iω^2$$"
         , 110, energy_img6layout));//1/2Iw^2
-        energy.add(new Formula(
+        energy.add(new Formula("GPE=mgh",
                 "$$GPE=mgh$$"
         , 110, energy_img7layout));//mgh
-        energy.add(new Formula(
+        energy.add(new Formula("GPE=-Gm1m2/r",
                 "$$GPE=-{Gm_1m_2}/r$$"
         , 110, energy_img8layout));//GPE complicated
 
         ArrayList<Formula> momentum = new ArrayList<>();
-        momentum.add(new Formula(
+        momentum.add(new Formula("P=mv",
                 "$$P=mv$$"
         , 110, moment_img1layout));//P=mv
-        momentum.add(new Formula(
+        momentum.add(new Formula("L=Iω",
                 "$$L=Iω$$"
         , 110, moment_img2layout));//L=Iw
-        momentum.add(new Formula(
+        momentum.add(new Formula("J=Ft=ΔP",
                 "$$J=Ft=ΔP$$"
         , 110, moment_img3layout));//J=Ft
-        momentum.add(new Formula(
-                "$$J=\uD835\uDF0Ft$$"
+        momentum.add(new Formula("J=τt",
+                "$$J=τt$$"
         , 110, moment_img4layout));//J=torque*t
 
         ArrayList<Formula> shm = new ArrayList<>();
-        shm.add(new Formula(
+        shm.add(new Formula("T=2π√{m/k}",
                 "$$T=2π√{m/k}$$"
         , 100, shm_img1layout));//
-        shm.add(new Formula(
+        shm.add(new Formula("T=2πsqrt(l/g)",
                 "$$T=2π√{l/g}$$"
         , 100, shm_img2layout));//
-        shm.add(new Formula(
+        shm.add(new Formula("T=1/f",
                 "$$T=1/f$$"
         , 110, shm_img3layout));//
-        shm.add(new Formula(
+        shm.add(new Formula("ω=2πf",
                 "$$ω=2πf$$"
         , 110, shm_img4layout));//
-        shm.add(new Formula(
+        shm.add(new Formula("x=Acos(ωt+Φ)",
                 "$$x=A\\cos(ωt+Φ)$$"
         , 110, shm_img5layout));//
-        shm.add(new Formula(
+        shm.add(new Formula("v=-ωAsin(ωt+Φ)",
                 "$$v=-ωA\\sin(ωt+Φ)$$"
         , 100, shm_img6layout));//
 
         ArrayList<Formula> rot = new ArrayList<>();
-        rot.add(new Formula(
-                "$$\uD835\uDF0F=I\uD835\uDEC2=rF_{tan}$$"
+        rot.add(new Formula("τ=Iα=rF",
+                "$$τ=Iα=rF_{tan}$$"
         , 110, rot_img1layout));//t=Ia=Rftan
-        rot.add(new Formula(
+        rot.add(new Formula("I(PointMass)=mr^2",
                 "$$I_{point \\\\  mass}=mr^2$$"
         , 110, rot_img2layout));//I=mr^2
-        rot.add(new Formula(
+        rot.add(new Formula("I(General)=cmr^2",
                 "$$I_{general}=cmr^2$$"
         , 110, rot_img3layout));//I=cmr^2
-        rot.add(new Formula(
+        rot.add(new Formula("I=I(cm)+md^2",
                 "$$I=I_{cm}+md^2$$"
         , 110, rot_img4layout));//Parallel axis theorem
 
@@ -284,25 +282,25 @@ public class ApplicationClass extends Application {
         subjects.clear();
 
         ArrayList<Formula> limits = new ArrayList<>();
-        limits.add(new Formula(
+        limits.add(new Formula("Limit Constant Rule",
                 "$$\\\\lim↙{x→a}(k·\\\\ f(x))=k·\\\\lim↙{x→a}f(x)$$"
                 , 90, limits_1layout));
-        limits.add(new Formula(
+        limits.add(new Formula("Limit sum rule",
                 "$$\\\\lim↙{x→a}(f(x)±g(x))=\\\\lim↙{x→a}f(x)±\\\\lim↙{x→a}g(x)$$"
                 , 80, limits_2layout));
-        limits.add(new Formula(
+        limits.add(new Formula("Limit Multiplication Rule",
                 "$$\\\\lim↙{x→a}(f(x)·g(x))=\\\\lim↙{x→a}f(x)·\\\\lim↙{x→a}g(x)$$"
                 , 80, limits_3layout));
-        limits.add(new Formula(
+        limits.add(new Formula("Limit division rule",
                 "$$\\\\lim↙{x→a}({f(x)}/{g(x)})={\\\\lim↙{x→a}f(x)}/{\\\\lim↙{x→a}g(x)}$$"
                 , 70, limits_4layout));
-        limits.add(new Formula(
+        limits.add(new Formula("Limit power rule",
                 "$$\\\\lim↙{x→a}(f(x))^n=(\\\\lim↙{x→a}f(x))^n$$"
                 , 90, limits_5layout));
-        limits.add(new Formula(
+        limits.add(new Formula("L'hopital's rule",
                 "$$\\\\lim↙{x→a}({f(x)}/{g(x)})=\\\\lim↙{x→a}({f\\'(x)}/{g\\'(x)})$$"
                 , 90, limits_6layout));
-        limits.add(new Formula(
+        limits.add(new Formula("Squeeze Theorem",
                 "Squeeze Theorem"
                 , 90, limits_7layout));
 //        limits.add(new Formula(
@@ -310,51 +308,51 @@ public class ApplicationClass extends Application {
 //                , 90, kinematics_img1layout));
 
         ArrayList<Formula> derivs = new ArrayList<>();
-        derivs.add(new Formula(
+        derivs.add(new Formula("Definition of derivative",
                 "$$d/{dx}f(x)=\\\\lim↙{h→0}{f(x+h)-f(x)}/h$$"
                 , 90, derivs_1layout));
-        derivs.add(new Formula(
+        derivs.add(new Formula("Power rule",
                 "$$d/{dx}x^n=nx^{n-1}$$"
                 , 90, derivs_2layout));
-        derivs.add(new Formula(
+        derivs.add(new Formula("Constant rule",
                 "$$d/{dx}k·f(x)=k·d/{dx}f(x)$$"
                 , 90, derivs_3layout));
-        derivs.add(new Formula(
+        derivs.add(new Formula("Sum/Diff rule",
                 "$$d/{dx}(f(x)±g(x))=d/{dx}f(x)±d/{dx}g(x)$$"
                 , 80, derivs_4layout));
-        derivs.add(new Formula(
+        derivs.add(new Formula("Product Rule",
                 "$$d/{dx}(f(x)g(x))=f\\'(x)g(x)+f(x)g\\'(x)$$"
                 , 80, derivs_5layout));
-        derivs.add(new Formula(
+        derivs.add(new Formula("Quotient Rule",
                 "$$d/{dx}({f(x)}/{g(x)})={f\\'(x)g(x)-g\\'(x)f(x)}/{(g(x))^2}$$"
                 , 80, derivs_6layout));
-        derivs.add(new Formula(
+        derivs.add(new Formula("Particle motion rules",
                 "$$x\\'(t)=v(t),\\ v\\'(t)=a(t)$$"
                 , 90, derivs_7layout));
-        derivs.add(new Formula(
+        derivs.add(new Formula("Inverse function deriv rule",
                 "$$(f^{-1}(x))\\'=1/{f\\'(f^{-1}(x))}$$"
                 , 90, derivs_8layout));
 
         ArrayList<Formula> integrals = new ArrayList<>();
-        integrals.add(new Formula(
+        integrals.add(new Formula("Def of Integral",
                 "$$∫↙a↖{b}f(x)dx=\\\\lim↙{n\\ ➙\\ ∞}∑↙{i=1}↖nf(x_i)Δx$$"
                 , 80, ints_1layout));
-        integrals.add(new Formula(
+        integrals.add(new Formula("Integral power rule",
                 "$$∫x^ndx=x^{n+1}/{n+1}+C$$"
                 , 80, ints_2layout));
-        integrals.add(new Formula(
+        integrals.add(new Formula("Integral reverse bounds",
                 "$$∫↙b↖{a}f(x)dx=-∫↙a↖{b}f(x)dx$$"
                 , 80, ints_3layout));
-        integrals.add(new Formula(
+        integrals.add(new Formula("Int constant rule",
                 "$$∫k·f(x)dx=k∫f(x)dx$$"
                 , 80, ints_4layout));
-        integrals.add(new Formula(
+        integrals.add(new Formula("Sum/Diff rule",
                 "$$∫[f(x)±g(x)]dx=∫f(x)dx±∫g(x)dx$$"
                 , 70, ints_5layout));
-        integrals.add(new Formula(
+        integrals.add(new Formula("Int by parts",
                 "$$∫f·g\\'dx=f·g-∫f\\'·gdx$$"
                 , 80, ints_6layout));
-        integrals.add(new Formula(
+        integrals.add(new Formula("Fund Theorem of Calc",
                 "$$d/{dx}∫↙a↖{x}f(t)dt=f(x)$$"
                 , 80, ints_7layout));
 
@@ -401,95 +399,95 @@ public class ApplicationClass extends Application {
 
         //Common limits/derivs/integrals
         commonLimits = new ArrayList<>();
-        commonLimits.add(new Formula(
+        commonLimits.add(new Formula("",
                 "$$\\\\lim↙{x→0}{\\\\sinx}/x=1$$"
         ,80,0));
-        commonLimits.add(new Formula(
+        commonLimits.add(new Formula("",
                 "$$\\\\lim↙{x→0}{1-\\\\cosx}/x=0$$"
                 ,80,0));
-        commonLimits.add(new Formula(
+        commonLimits.add(new Formula("",
                 "$$\\\\lim↙{x→0}{\\\\arcsin\\\\x}/x=1$$"
                 ,80,0));
-        commonLimits.add(new Formula(
+        commonLimits.add(new Formula("",
                 "$$\\\\lim↙{x\\ ➙\\±∞}{(1+1/x)}^x=e$$"
                 ,70,0));
-        commonLimits.add(new Formula(
+        commonLimits.add(new Formula("",
                 "$$\\\\lim↙{x→0}{(1+x)}^{1/x}=e$$"
                 ,70,0));
 
 
         commonDerivs = new ArrayList<>();
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}\\\\sin(x)=\\\\cosx$$"
                 ,71,0));
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}\\\\cos(x)=-\\\\sinx$$"
                 ,71,0));
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}\\\\tan\\\\x=\\\\sec^2x$$"
                 ,71,0));
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}\\\\cot\\\\x=-\\\\csc^2x$$"
                 ,71,0));
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}\\\\sec\\\\x=\\\\sec\\\\x\\\\tan\\\\x$$"
                 ,61,0));
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}\\\\csc\\\\x=-\\\\csc\\\\x\\\\cot\\\\x$$"
                 ,61,0));
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}\\\\sin^{-1}x=1/{√{1-x^2}}$$"
                 ,62,0));
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}\\\\cos^{-1}x=-1/{√{1-x^2}}$$"
                 ,62,0));
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}\\\\tan^{-1}x=1/{1+x^2}$$"
                 ,70,0));
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}a^x=a^x\\\\ln(a)$$"
                 ,74,0));
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}e^x=e^x$$"
                 ,74,0));
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}\\\\ln\\\\x=1/x$$"
                 ,74,0));
-        commonDerivs.add(new Formula(
+        commonDerivs.add(new Formula("",
                 "$$d/{dx}\\\\log_ax=1/{x\\\\ln(a)}$$"
                 ,71,0));
 
 
 
         commonIntegrals = new ArrayList<>();
-        commonIntegrals.add(new Formula(
+        commonIntegrals.add(new Formula("",
                 "$$∫\\\\cos(x)dx=\\\\sin(x)+C$$"
                 ,76,0));
-        commonIntegrals.add(new Formula(
+        commonIntegrals.add(new Formula("",
                 "$$∫\\\\sin(x)dx=-\\\\cos(x)+C$$"
                 ,76,0));
-        commonIntegrals.add(new Formula(
+        commonIntegrals.add(new Formula("",
                 "$$∫\\\\sec^2(x)dx=\\\\tan(x)+C$$"
                 ,76,0));
-        commonIntegrals.add(new Formula(
+        commonIntegrals.add(new Formula("",
                 "$$∫\\\\csc^2(x)dx=-\\\\cot\\\\x+C$$"
                 ,76,0));
-        commonIntegrals.add(new Formula(
+        commonIntegrals.add(new Formula("",
                 "$$∫\\\\sec\\\\x\\\\tan\\\\x dx=\\\\sec\\\\x+C$$"
                 ,76,0));
-        commonIntegrals.add(new Formula(
+        commonIntegrals.add(new Formula("",
                 "$$∫\\\\csc\\\\x\\\\cot\\\\x dx=-\\\\csc\\\\x+C$$"
                 ,76,0));
-        commonIntegrals.add(new Formula(
+        commonIntegrals.add(new Formula("",
                 "$$∫x^{-1}dx=\\\\ln(|x|)+C$$"
                 ,76,0));
-        commonIntegrals.add(new Formula(
+        commonIntegrals.add(new Formula("",
                 "$$∫\\\\ln\\\\x\\\\dx=x\\\\ln(x)-x+C$$"
                 ,76,0));
-        commonIntegrals.add(new Formula(
+        commonIntegrals.add(new Formula("",
                 "$$∫e^xdx=e^x+C$$"
                 ,76,0));
-        commonIntegrals.add(new Formula(
+        commonIntegrals.add(new Formula("",
                 "$$∫a^xdx=a^x/{\\\\ln\\\\a}$$"
                 ,76,0));
     }

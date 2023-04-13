@@ -5,11 +5,13 @@ public class Formula {
     private String formulaText;
     private int layout;
     private int zoom;
+    private String formTextNormal;
 
-    public Formula(String formText, int zoom, int layout) {
+    public Formula(String formTextNormal, String formText, int zoom, int layout) {
         this.formulaText = formText;
         this.layout = layout;
         this.zoom = zoom;
+        this.formTextNormal = formTextNormal;
     }
 
 
@@ -20,7 +22,6 @@ public class Formula {
     public void setFormulaText(String formulaText) {
         this.formulaText = formulaText;
     }
-
 
     public int getLayout() {
         return layout;
@@ -33,4 +34,12 @@ public class Formula {
     public int getZoom(){return zoom;}
 
     public void setZoom(int zoom){this.zoom=zoom;}
+
+    public String getFormTextNormal() {
+        return formTextNormal;
+    }
+
+    public void setFormTextNormal(String formTextNormal) {
+        this.formTextNormal = formTextNormal;
+    }
 }
