@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
+import com.advaith.physicsformulas.ApplicationClass;
+import com.advaith.physicsformulas.BuildConfig;
 import com.advaith.physicsformulas.R;
 import com.jstarczewski.pc.mathview.src.MathView;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -21,6 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -32,12 +39,17 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class QuizActivity extends AppCompatActivity {
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String USESAPI = "usesAPI";
+    public static final String DATEUSES = "usesDate";
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .build();
+    TextView tvUses;
+    String apiKey = BuildConfig.API_KEY;
     TextView tvQuizTitle;
     TextView tvProblem;
     MathView choice1;
@@ -62,6 +74,8 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        tvUses = findViewById(R.id.tvUses);
         tvQuizTitle = findViewById(R.id.tvQuizTitle);
         quizBack = findViewById(R.id.btn_quizBack);
         tvProblem = findViewById(R.id.tvProblem);
@@ -193,7 +207,7 @@ public class QuizActivity extends AppCompatActivity {
         RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/chat/completions")
-                .header("Authorization", "Bearer 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")
+                .header("Authorization", "Bearer " + apiKey)
                 .post(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -219,6 +233,16 @@ public class QuizActivity extends AppCompatActivity {
                         runOnUiThread(() -> gif.setVisibility(View.GONE));
                         runOnUiThread(() -> tvProblem.setVisibility(View.VISIBLE));
                         runOnUiThread(() -> next.setVisibility(View.VISIBLE));
+                        runOnUiThread(() -> {
+                            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd");
+                            LocalDateTime now = LocalDateTime.now();
+                            editor.putInt(USESAPI, sharedPreferences.getInt(USESAPI, -1) - 1);
+                            editor.apply();
+                            String text = "You have " + sharedPreferences.getInt(USESAPI, -1) + " problems left for today.";
+                            tvUses.setText(text);
+                        });
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -265,7 +289,7 @@ public class QuizActivity extends AppCompatActivity {
         RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/chat/completions")
-                .header("Authorization", "Bearer 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")
+                .header("Authorization", "Bearer " + apiKey)
                 .post(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -355,7 +379,7 @@ public class QuizActivity extends AppCompatActivity {
         RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/chat/completions")
-                .header("Authorization", "Bearer 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")
+                .header("Authorization", "Bearer " + apiKey)
                 .post(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -412,8 +436,46 @@ public class QuizActivity extends AppCompatActivity {
         gif.setVisibility(View.GONE);
     }
 
-    void nextPressed(){
-        callAPI1("Give a full and VERY DIFFICULT problem that uses some of following formulas: " + getIntent().getExtras().getString("prompt") + ". DON'T STATE THE ANSWER AND DON'T GIVE CHOICES.");
+    void nextPressed() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd");
+        LocalDateTime now = LocalDateTime.now();
+        if(sharedPreferences.getString(DATEUSES, "notSet").equals("notSet")){//Date not set
+            editor.putString(DATEUSES,dtf.format(now));
+            editor.apply();
+        }
+        else if(!(sharedPreferences.getString(DATEUSES, "notSet").equals(dtf.format(now)))){//Date is not the same
+            editor.putInt(USESAPI, 5);
+            editor.putString(DATEUSES, dtf.format(now));
+            editor.apply();
+        }
+
+        if ((sharedPreferences.getInt(USESAPI, -1) == -1)) {
+            editor.putInt(USESAPI, 5);
+            editor.apply();
+            String text = "You have 5 problems left for today.";
+            tvUses.setText(text);
+        }
+
+        if (sharedPreferences.getInt(USESAPI, -1) == 0) {
+            gif.setVisibility(View.GONE);
+            next.setVisibility(View.GONE);
+            tvProblem.setVisibility(View.GONE);
+            String text = "You have no problems left today. Come back tomorrow to generate more problems!";
+            tvUses.setText(text);
+        } else {
+            String text = "You have " + sharedPreferences.getInt(USESAPI, -1) + " problems left for today.";
+            tvUses.setText(text);
+            callAPI1("Give a full and VERY DIFFICULT problem that uses some of following formulas: " + getIntent().getExtras().getString("prompt") + ". DON'T STATE THE ANSWER AND DON'T GIVE CHOICES.");
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, CourseActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 
 }

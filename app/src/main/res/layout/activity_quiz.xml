@@ -160,4 +160,14 @@
         android:layout_height="match_parent"
         android:src="@drawable/loading" />
 
+    <TextView
+        android:id="@+id/tvUses"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="TextView"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"/>
+
 </LinearLayout>

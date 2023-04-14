@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
 }
 
-android {
+ android {
     compileSdk 33
 
     defaultConfig {
@@ -13,6 +13,11 @@ android {
         versionName "1.2 (public)"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.debug
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+        buildConfigField "String", "API_KEY", "\"${properties.getProperty("API_KEY")}\""
     }
     buildTypes {
         release {

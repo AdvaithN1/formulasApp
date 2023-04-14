@@ -80,6 +80,18 @@ public class CourseActivity extends AppCompatActivity implements CourseAdapter.C
         }
     }
 
+    @Override
+    public void onQuizClickedCourse(int index) {
+        String prompt = "ALL FORMULAS in " + ApplicationClass.courses.get(index).getCourse();
+        Log.println(Log.ASSERT, "", ("QUIZ CLICKED : " + prompt));
+        Intent intent = new Intent(this, QuizActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("prompt", prompt);
+        intent.putExtra("name", ApplicationClass.courses.get(index).getCourse());
+        startActivity(intent);
+        this.finish();
+    }
+
     void showCustomDialog() {
         dialog = new Dialog(CourseActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -120,4 +132,14 @@ public class CourseActivity extends AppCompatActivity implements CourseAdapter.C
         super.onDestroy();
     }
 
+    @Override
+    public void onBackPressed() {
+        if(dialog !=null && dialog.isShowing()){
+            dialog.dismiss();
+        }
+
+        else{
+            this.finish();
+        }
+    }
 }
