@@ -28,7 +28,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
+import java.util.Timer;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -45,8 +47,8 @@ public class QuizActivity extends AppCompatActivity {
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(120, TimeUnit.SECONDS)
-            .readTimeout(120, TimeUnit.SECONDS)
+            .connectTimeout(25, TimeUnit.SECONDS)
+            .readTimeout(25, TimeUnit.SECONDS)
             .build();
     TextView tvUses;
     String apiKey = BuildConfig.API_KEY;
@@ -70,6 +72,7 @@ public class QuizActivity extends AppCompatActivity {
     String option4;
     String api2Response;
     View gif;
+    Timer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,93 +170,113 @@ public class QuizActivity extends AppCompatActivity {
                 nextPressed();
             }
         });
+        timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(() -> onErrorOccurred());
+            }
+        };
+        timer.schedule(timerTask, 30*1000);
         nextPressed();
     }
 
     public void callAPI1(String prompt){
-        cv1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
-        cv2.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
-        cv3.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
-        cv4.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
-        next.setVisibility(View.GONE);
-        cv1.setVisibility(View.GONE);
-        cv2.setVisibility(View.GONE);
-        cv3.setVisibility(View.GONE);
-        cv4.setVisibility(View.GONE);
-        tvProblem.setVisibility(View.GONE);
-        gif.setVisibility(View.VISIBLE);
-        String[] result = {"failed"};
-        Log.println(Log.ASSERT, "Clicked", "API Called");
-        JSONObject jsonBody = new JSONObject();
-        JSONArray messagesArray = new JSONArray();
-        JSONObject message = new JSONObject();
         try {
-            // Add user message to messagesArray
-            message.put("role", "user");
-            message.put("content", prompt);
-            messagesArray.put(message);
+            cv1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+            cv2.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+            cv3.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+            cv4.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+            next.setVisibility(View.GONE);
+            cv1.setVisibility(View.GONE);
+            cv2.setVisibility(View.GONE);
+            cv3.setVisibility(View.GONE);
+            cv4.setVisibility(View.GONE);
+            tvProblem.setVisibility(View.GONE);
+            gif.setVisibility(View.VISIBLE);
+            String n = "Try Again";
+            next.setText(n);
+            String[] result = {"failed"};
+            Log.println(Log.ASSERT, "Clicked", "API Called");
+            JSONObject jsonBody = new JSONObject();
+            JSONArray messagesArray = new JSONArray();
+            JSONObject message = new JSONObject();
+            try {
+                // Add user message to messagesArray
+                message.put("role", "user");
+                message.put("content", prompt);
+                messagesArray.put(message);
 
-            // Add messagesArray and other parameters to jsonBody
-            jsonBody.put("model", "gpt-3.5-turbo");
-            jsonBody.put("messages", messagesArray);
-             jsonBody.put("max_tokens", 500);
-             jsonBody.put("temperature", 0.75);
-        }
-        catch(JSONException e) {
-            e.printStackTrace();
-        }
-        Log.println(Log.ASSERT, "Done", "");
-
-        RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
-        Request request = new Request.Builder()
-                .url("https://api.openai.com/v1/chat/completions")
-                .header("Authorization", "Bearer " + apiKey)
-                .post(body)
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Log.println(Log.ASSERT, "APICALLFAILED1", e.toString());
+                // Add messagesArray and other parameters to jsonBody
+                jsonBody.put("model", "gpt-3.5-turbo");
+                jsonBody.put("messages", messagesArray);
+                jsonBody.put("max_tokens", 500);
+                jsonBody.put("temperature", 0.75);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                onErrorOccurred();
+                return;
             }
+            Log.println(Log.ASSERT, "Done", "");
 
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                if(response.isSuccessful()) {
-                    JSONObject jsonObject = null;
-                    Log.println(Log.ASSERT, "Done2", "");
-                    try {
-                        Log.println(Log.ASSERT, "Hello?", "");
-                        jsonObject = new JSONObject(response.body().string());
-                        JSONArray jsonArray = jsonObject.getJSONArray("choices");
-                        result[0] = jsonArray.getJSONObject(0).getJSONObject("message").getString("content");
-                        Log.println(Log.ASSERT, "Hello?", result[0]);
-                        runOnUiThread(() -> problem = result[0]);
-                        //runOnUiThread(() -> callAPI2());
-                        runOnUiThread(() -> tvProblem.setText(problem));
-                        runOnUiThread(() -> gif.setVisibility(View.GONE));
-                        runOnUiThread(() -> tvProblem.setVisibility(View.VISIBLE));
-                        runOnUiThread(() -> next.setVisibility(View.VISIBLE));
-                        runOnUiThread(() -> {
-                            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd");
-                            LocalDateTime now = LocalDateTime.now();
-                            editor.putInt(USESAPI, sharedPreferences.getInt(USESAPI, -1) - 1);
-                            editor.apply();
-                            String text = "You have " + sharedPreferences.getInt(USESAPI, -1) + " problems left for today.";
-                            tvUses.setText(text);
-                        });
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+            RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
+            Request request = new Request.Builder()
+                    .url("https://api.openai.com/v1/chat/completions")
+                    .header("Authorization", "Bearer " + apiKey)
+                    .post(body)
+                    .build();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                    Log.println(Log.ASSERT, "APICALLFAILED1", e.toString());
+                    runOnUiThread(() -> onErrorOccurred());
+                }
+
+                @Override
+                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        JSONObject jsonObject = null;
+                        Log.println(Log.ASSERT, "Done2", "");
+                        try {
+                            runOnUiThread(() -> timer.cancel());
+                            Log.println(Log.ASSERT, "Hello?", "");
+                            jsonObject = new JSONObject(response.body().string());
+                            JSONArray jsonArray = jsonObject.getJSONArray("choices");
+                            result[0] = jsonArray.getJSONObject(0).getJSONObject("message").getString("content");
+                            Log.println(Log.ASSERT, "Hello?", result[0]);
+                            runOnUiThread(() -> problem = result[0]);
+                            //runOnUiThread(() -> callAPI2());
+                            runOnUiThread(() -> tvProblem.setText(problem));
+                            runOnUiThread(() -> gif.setVisibility(View.GONE));
+                            runOnUiThread(() -> tvProblem.setVisibility(View.VISIBLE));
+                            runOnUiThread(() -> next.setVisibility(View.VISIBLE));
+                            runOnUiThread(() -> {
+                                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd");
+                                LocalDateTime now = LocalDateTime.now();
+                                editor.putInt(USESAPI, sharedPreferences.getInt(USESAPI, -1) - 1);
+                                editor.apply();
+                                String text = "You have " + sharedPreferences.getInt(USESAPI, -1) + " problems left for today.";
+                                tvUses.setText(text);
+                                String nextText = "Next";
+                                next.setText(nextText);
+                            });
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            onErrorOccurred();
+                        }
+                    } else {
+                        Log.println(Log.ASSERT, "APICALLFAILED", "FAILED");
+                        Log.println(Log.ASSERT, "FAILED: ", response.body().string());
+                        runOnUiThread(() -> onErrorOccurred());
                     }
                 }
-                else{
-                    Log.println(Log.ASSERT, "APICALLFAILED", "FAILED");
-                    Log.println(Log.ASSERT, "FAILED: ", response.body().string());
-                }
-
-            }
-        });
+            });
+        }
+        catch(Exception e){
+            onErrorOccurred();
+        }
     }
 
     public void callAPI2(){
@@ -464,6 +487,7 @@ public class QuizActivity extends AppCompatActivity {
             tvProblem.setVisibility(View.GONE);
             String text = "You have no problems left today. Come back tomorrow to generate more problems!";
             tvUses.setText(text);
+            timer.cancel();
         } else {
             String text = "You have " + sharedPreferences.getInt(USESAPI, -1) + " problems left for today.";
             tvUses.setText(text);
@@ -476,6 +500,16 @@ public class QuizActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CourseActivity.class);
         startActivity(intent);
         this.finish();
+    }
+
+    public void onErrorOccurred(){
+        String n = "Try Again";
+        next.setText(n);
+        next.setVisibility(View.VISIBLE);
+        String text = "An error occurred. Please try again later.";
+        tvProblem.setText(text);
+        tvProblem.setVisibility(View.VISIBLE);
+        gif.setVisibility(View.GONE);
     }
 
 }

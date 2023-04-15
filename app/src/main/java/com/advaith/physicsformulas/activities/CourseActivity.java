@@ -65,7 +65,6 @@ public class CourseActivity extends AppCompatActivity implements CourseAdapter.C
                 Intent intent = new Intent(CourseActivity.this, MainActivity.class);
                 intent.putExtra("Course", 0);
                 startActivity(intent);
-                //this.finish();
                 break;
             case 1:
                 ApplicationClass.setSubject(ApplicationClass.calculusArray);
@@ -75,7 +74,6 @@ public class CourseActivity extends AppCompatActivity implements CourseAdapter.C
                 Intent intent1 = new Intent(CourseActivity.this, MainActivity.class);
                 intent1.putExtra("Course", 1);
                 startActivity(intent1);
-                //this.finish();
                 break;
         }
     }
