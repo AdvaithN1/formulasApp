@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
-import com.advaith.physicsformulas.ApplicationClass;
 import com.advaith.physicsformulas.BuildConfig;
 import com.advaith.physicsformulas.R;
 import com.jstarczewski.pc.mathview.src.MathView;
@@ -47,8 +46,8 @@ public class QuizActivity extends AppCompatActivity {
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(25, TimeUnit.SECONDS)
-            .readTimeout(25, TimeUnit.SECONDS)
+            .connectTimeout(40, TimeUnit.SECONDS)
+            .readTimeout(40, TimeUnit.SECONDS)
             .build();
     TextView tvUses;
     String apiKey = BuildConfig.API_KEY;
@@ -210,7 +209,7 @@ public class QuizActivity extends AppCompatActivity {
                 // Add messagesArray and other parameters to jsonBody
                 jsonBody.put("model", "gpt-3.5-turbo");
                 jsonBody.put("messages", messagesArray);
-                jsonBody.put("max_tokens", 500);
+                jsonBody.put("max_tokens", 400);
                 jsonBody.put("temperature", 0.75);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -491,7 +490,7 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             String text = "You have " + sharedPreferences.getInt(USESAPI, -1) + " problems left for today.";
             tvUses.setText(text);
-            callAPI1("Give a full and VERY DIFFICULT problem that uses some of following formulas: " + getIntent().getExtras().getString("prompt") + ". DON'T STATE THE ANSWER AND DON'T GIVE CHOICES.");
+            callAPI1("Give a full and VERY DIFFICULT problem that uses some of following formulas: " + getIntent().getExtras().getString("prompt") + ". Do NOT GIVE THE ANSWER.");
         }
     }
 

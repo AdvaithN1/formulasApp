@@ -1,5 +1,6 @@
 package com.advaith.physicsformulas.activities;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +38,20 @@ public class CourseActivity extends AppCompatActivity implements CourseAdapter.C
                 showCustomDialog();
             }
         });
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                } else {
+                    finish();
+                }
+            }
+
+        });
+
+
     }
 
     @Override
@@ -89,7 +104,6 @@ public class CourseActivity extends AppCompatActivity implements CourseAdapter.C
         startActivity(intent);
         this.finish();
     }
-
     void showCustomDialog() {
         dialog = new Dialog(CourseActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -130,14 +144,17 @@ public class CourseActivity extends AppCompatActivity implements CourseAdapter.C
         super.onDestroy();
     }
 
-    @Override
-    public void onBackPressed() {
-        if(dialog !=null && dialog.isShowing()){
-            dialog.dismiss();
-        }
 
-        else{
-            this.finish();
-        }
-    }
+//    DEPRECATED
+//    @Override
+//    public void onBackPressed() {
+//        if (dialog != null && dialog.isShowing()) {
+//            dialog.dismiss();
+//        } else {
+//            this.finish();
+//        }
+//        super.onBackPressed();
+//    }
+
+
 }
