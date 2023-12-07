@@ -1,5 +1,6 @@
 package com.advaith.physicsformulas.activities;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -178,6 +179,16 @@ public class QuizActivity extends AppCompatActivity {
         };
         timer.schedule(timerTask, 30*1000);
         nextPressed();
+
+        Intent intent = new Intent(this, CourseActivity.class);//Used to go in the handleOnBackPressed
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                startActivity(intent);
+                finish();
+            }
+
+        });
     }
 
     public void callAPI1(String prompt){
@@ -494,12 +505,12 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, CourseActivity.class);
-        startActivity(intent);
-        this.finish();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        Intent intent = new Intent(this, CourseActivity.class);
+//        startActivity(intent);
+//        this.finish();
+//    }
 
     public void onErrorOccurred(){
         String n = "Try Again";
